@@ -42,6 +42,11 @@ const Navbar = () => {
               My Booking
             </Link>
           </li>
+          <li>
+            <Link href="/addDestinations" className={navLink("/addDestinations")}>
+            Add Destinations
+            </Link>
+          </li>
         </ul>
         <Link href="/" className="flex items-center">
           <Image
@@ -102,6 +107,11 @@ const Navbar = () => {
                 My Booking
               </Link>
             </li>
+             <li>
+            <Link href="/addDestinations" className={navLink("/addDestinations")}>
+            Add Destinations
+            </Link>
+          </li>
 
             <li>
               <Link href="/profile" className={navLink("/profile")}>

@@ -44,7 +44,7 @@ const DetailsDestinationPage = async ({ params }) => {
           <span>Back to Destinations</span>
         </Link>
         <div className="flex gap-3">
-    <EditDestination ></EditDestination>
+    <EditDestination data = {destination} ></EditDestination>
         <button className="flex items-center gap-2 border border-red-100 px-4 py-2 rounded-lg text-sm font-medium text-red-500 hover:bg-red-50 transition-all">
             <Trash2 size={16} /> Cancel
           </button>

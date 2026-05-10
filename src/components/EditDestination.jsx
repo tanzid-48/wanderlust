@@ -17,7 +17,7 @@ import {
 import { Edit } from "lucide-react";
 import { FaEdit } from "react-icons/fa";
 
-const EditDestination = () => {
+const EditDestination = ({data}) => {
   return (
     <Modal>
       <Modal.Trigger>
@@ -43,7 +43,7 @@ const EditDestination = () => {
             <Modal.Body className="p-6">
               <Surface variant="default">
                 <form className="space-y-6">
-                  <TextField name="destinationName">
+                  <TextField defaultValue={data.destinationName}  name="destinationName">
                     <Label>Destination Name</Label>
 
                     <Input placeholder="Bali Paradise" />
@@ -51,7 +51,7 @@ const EditDestination = () => {
                     <FieldError />
                   </TextField>
 
-                  <TextField name="country">
+                  <TextField defaultValue={data.country} name="country">
                     <Label>Country</Label>
 
                     <Input placeholder="Indonesia" />
@@ -59,7 +59,7 @@ const EditDestination = () => {
                     <FieldError />
                   </TextField>
 
-                  <TextField name="price">
+                  <TextField defaultValue={data.price}  name="price">
                     <Label>Price</Label>
 
                     <Input type="number" placeholder="1200" />
@@ -67,7 +67,7 @@ const EditDestination = () => {
                     <FieldError />
                   </TextField>
 
-                  <TextField name="duration">
+                  <TextField defaultValue={data.duration}  name="duration">
                     <Label>Duration</Label>
 
                     <Input placeholder="7 Days" />
@@ -75,7 +75,7 @@ const EditDestination = () => {
                     <FieldError />
                   </TextField>
 
-                  <TextField name="imageUrl">
+                  <TextField defaultValue={data.imageUrl}  name="imageUrl">
                     <Label>Image URL</Label>
 
                     <Input placeholder="https://example.com/image.jpg" />
@@ -83,7 +83,7 @@ const EditDestination = () => {
                     <FieldError />
                   </TextField>
 
-                  <TextField name="description">
+                  <TextField defaultValue={data.description}  name="description">
                     <Label>Description</Label>
 
                     <TextArea placeholder="Write description..." />
@@ -95,8 +95,7 @@ const EditDestination = () => {
                     <Button slot="close" variant="secondary">
                       Cancel
                     </Button>
-
-                    <Button>Update</Button>
+                  <Button className={'text-center'}>Update</Button>
                   </div>
                 </form>
               </Surface>

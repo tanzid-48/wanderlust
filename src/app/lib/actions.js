@@ -44,3 +44,16 @@ export const updatedDestination = async (formData,_id) => {
 };
 
 
+
+export const deleteDestination = async (id) => {
+  const res = await fetch(`http://localhost:5000/destinations/${id}`, {
+    method: "DELETE",
+  });
+
+  if (res.ok) {
+    revalidatePath("/destinations"); 
+    redirect("/destinations"); 
+  }
+  
+  return { success: res.ok };
+};

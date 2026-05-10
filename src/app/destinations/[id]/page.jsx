@@ -8,12 +8,11 @@ import {
   Star,
   ArrowLeft,
   ArrowRight,
-  Edit,
-  Trash2,
   CheckCircle2,
 } from "lucide-react";
 import Image from "next/image";
 import EditDestination from "@/components/EditDestination";
+import { DeleteDestination } from "@/components/DeleteDestination";
 
 
 const DetailsDestinationPage = async ({ params }) => {
@@ -44,11 +43,9 @@ const DetailsDestinationPage = async ({ params }) => {
           <span>Back to Destinations</span>
         </Link>
         <div className="flex gap-3">
-    <EditDestination data = {destination} ></EditDestination>
-        <button className="flex items-center gap-2 border border-red-100 px-4 py-2 rounded-lg text-sm font-medium text-red-500 hover:bg-red-50 transition-all">
-            <Trash2 size={16} /> Cancel
-          </button>
-        </div>
+  <EditDestination data={destination} />
+  <DeleteDestination id={_id} name={destinationName} />
+</div>
       </div>
 
       <div className="relative w-full h-[350px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mb-10">

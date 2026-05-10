@@ -42,3 +42,5 @@ export const updatedDestination = async (formData,_id) => {
 
   return data;
 };
+
+

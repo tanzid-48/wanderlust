@@ -4,7 +4,7 @@ import { MapPin, Calendar, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 const DestinationCard = ({ destination }) => {
-  const { destinationName, country, price, duration, imageUrl } = destination;
+  const { _id,destinationName, country, price, duration, imageUrl } = destination;
 
   return (
     <div className="bg-white rounded-xl overflow-hidden group">
@@ -43,7 +43,7 @@ const DestinationCard = ({ destination }) => {
 
         {/* Book Now Link */}
         <div className="pt-2">
-          <Link href={'/myBooking'} className="flex items-center gap-1 text-sky-500 font-semibold hover:underline   text-sm tracking-wider">
+          <Link href={`destinations/${_id}`} className="flex items-center gap-1 text-sky-500 font-semibold hover:underline   text-sm tracking-wider">
             Book Now <ArrowUpRight size={18} />
           </Link>
          

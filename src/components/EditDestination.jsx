@@ -1,23 +1,31 @@
-"use client";
+'use client'
 
+import { updatedDestination } from "@/app/lib/actions";
 import { Envelope } from "@gravity-ui/icons";
 import {
   Button,
   FieldError,
   Input,
   Label,
-  ListBox,
+
   Modal,
   Surface,
   TextArea,
   TextField,
-  Select,
+ 
 } from "@heroui/react";
 
 import { Edit } from "lucide-react";
 import { FaEdit } from "react-icons/fa";
 
 const EditDestination = ({data}) => {
+
+  const handleUpdate = async (formData) => {
+    await updatedDestination(formData, data._id);
+  };
+  
+
+
   return (
     <Modal>
       <Modal.Trigger>
@@ -42,7 +50,7 @@ const EditDestination = ({data}) => {
 
             <Modal.Body className="p-6">
               <Surface variant="default">
-                <form className="space-y-6">
+                <form  action={handleUpdate} className="space-y-6">
                   <TextField defaultValue={data.destinationName}  name="destinationName">
                     <Label>Destination Name</Label>
 
@@ -95,7 +103,7 @@ const EditDestination = ({data}) => {
                     <Button slot="close" variant="secondary">
                       Cancel
                     </Button>
-                  <Button className={'text-center'}>Update</Button>
+                  <Button type="submit" className={'text-center'}>Update</Button>
                   </div>
                 </form>
               </Surface>

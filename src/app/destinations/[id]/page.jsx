@@ -13,6 +13,8 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import Image from "next/image";
+import EditDestination from "@/components/EditDestination";
+
 
 const DetailsDestinationPage = async ({ params }) => {
   const { id } = await params;
@@ -42,10 +44,8 @@ const DetailsDestinationPage = async ({ params }) => {
           <span>Back to Destinations</span>
         </Link>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 border border-slate-200 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-all">
-            <Edit size={16} /> Edit
-          </button>
-          <button className="flex items-center gap-2 border border-red-100 px-4 py-2 rounded-lg text-sm font-medium text-red-500 hover:bg-red-50 transition-all">
+    <EditDestination ></EditDestination>
+        <button className="flex items-center gap-2 border border-red-100 px-4 py-2 rounded-lg text-sm font-medium text-red-500 hover:bg-red-50 transition-all">
             <Trash2 size={16} /> Cancel
           </button>
         </div>

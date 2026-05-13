@@ -4,6 +4,7 @@ import { authClient } from "@/app/lib/auth-client";
 import { Button, DateField, Label } from "@heroui/react";
 import { ArrowRight } from "lucide-react";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 const BookingCard = ({ destination }) => {
   const { _id, destinationName, country, price, imageUrl } = destination;
@@ -36,7 +37,9 @@ const BookingCard = ({ destination }) => {
       body: JSON.stringify(bookingData),
     });
     const data = await res.json();
+      toast.success(`${destinationName} Booking Successfully`)
      return data;
+     
     
   };
 

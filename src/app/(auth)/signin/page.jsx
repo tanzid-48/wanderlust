@@ -15,7 +15,6 @@ import { redirect } from "next/navigation";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { LuLock, LuMail } from "react-icons/lu";
 import { toast } from "sonner";
 
 const LoginPage = () => {
@@ -44,6 +43,19 @@ const LoginPage = () => {
     toast.success("Login successful!");
     redirect("/");
   };
+  const handleGoogleSignIn = async () => {
+  const { data, error } = await authClient.signIn.social({
+    provider: "google",
+    callbackURL: "/",
+  });
+   if (error) {
+    toast.error(error.message || "Google sign in failed.");
+    return;
+  }
+   else{
+       toast.success("Google login successful!");
+      }
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#f8fafc]  py-5">
@@ -120,6 +132,7 @@ const LoginPage = () => {
             <div className="h-px bg-gray-200 flex-1" />
           </div>
           <Button
+          onClick={handleGoogleSignIn}
             variant="outline"
             className="w-full py-6 font-medium border border-gray-100 hover:bg-gray-200 text-gray-700 rounded-none"
             type="button"
@@ -143,3 +156,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+

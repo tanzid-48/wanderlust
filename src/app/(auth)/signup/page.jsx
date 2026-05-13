@@ -53,6 +53,20 @@ const SignUpPage = () => {
     redirect("/signin");
   };
 
+    const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+     if (error) {
+      toast.error(error.message || "Google sign in failed.");
+      return; 
+    }
+    else{
+     toast.success("Google login successful!");
+    }
+    }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f8fafc] px-4 py-10">
       <Card className="w-full max-w-lg p-8 shadow-sm rounded-none border-none bg-white">
@@ -176,6 +190,7 @@ const SignUpPage = () => {
             </div>
 
             <Button
+             onClick={handleGoogleSignIn}
               variant="bordered"
               className="w-full h-11 font-medium border-gray-200 bg-gray-200 hover:bg-gray-300"
               type="button"

@@ -7,12 +7,13 @@ import {
   Calendar,
   Star,
   ArrowLeft,
-  ArrowRight,
+ 
   CheckCircle2,
 } from "lucide-react";
 import Image from "next/image";
 import EditDestination from "@/components/EditDestination";
 import { DeleteDestination } from "@/components/DeleteDestination";
+import BookingCard from "@/components/BookingCard";
 
 
 const DetailsDestinationPage = async ({ params }) => {
@@ -26,7 +27,7 @@ const DetailsDestinationPage = async ({ params }) => {
     duration,
     imageUrl,
     description,
-    departureDate,
+    
   } = destination;
 
   return (
@@ -104,18 +105,7 @@ const DetailsDestinationPage = async ({ params }) => {
                 <span className="text-slate-400 text-sm">/person</span>
               </div>
             </div>
-            <div className="bg-slate-50 border border-slate-100 p-4 rounded-2xl mb-6 flex items-center justify-between">
-              <span className="text-slate-500 text-sm font-medium">
-                Departure:
-              </span>
-              <span className="text-slate-900 font-bold">
-                {departureDate || "05/15/2026"}
-              </span>
-            </div>
-
-            <Link href={'/myBooking'} className="w-full bg-sky-500 text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-sky-600 hover:shadow-lg hover:shadow-sky-200 transition-all active:scale-[0.98] mb-8">
-              Book Now <ArrowRight size={20} />
-            </Link>
+             <BookingCard destination={destination }></BookingCard>
 
             <div className="space-y-4">
               <div className="flex items-start gap-3">

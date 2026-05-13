@@ -6,13 +6,7 @@ import { ArrowRight } from "lucide-react";
 import React, { useState } from "react";
 
 const BookingCard = ({ destination }) => {
-  const {
-    _id,
-    destinationName,
-    country,
-    price,
-    imageUrl,
-  } = destination;
+  const { _id, destinationName, country, price, imageUrl } = destination;
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
@@ -34,7 +28,16 @@ const BookingCard = ({ destination }) => {
       departureDate: departure?.toDate("Asia/Dhaka"),
     };
 
-    console.log(bookingData);
+    const res = await fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookingData),
+    });
+    const data = await res.json();
+     return data;
+    
   };
 
   return (
@@ -52,9 +55,7 @@ const BookingCard = ({ destination }) => {
 
           <DateField.Group>
             <DateField.Input>
-              {(segment) => (
-                <DateField.Segment segment={segment} />
-              )}
+              {(segment) => <DateField.Segment segment={segment} />}
             </DateField.Input>
           </DateField.Group>
         </DateField>

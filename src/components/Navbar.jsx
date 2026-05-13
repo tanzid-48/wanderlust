@@ -1,15 +1,30 @@
 "use client";
 
+import { authClient} from "@/app/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { IoBackspaceSharp } from "react-icons/io5";
 import { RiMenu3Fill } from "react-icons/ri";
+import { toast } from "sonner";
+
+const avatar =
+  "https://cdn.create.vista.com/api/media/small/73040253/stock-vector-male-avatar-icon";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+
+  const handleSignOut = async () => {
+  await authClient.signOut();
+  toast.success("Signed out successfully!");
+  redirect("/signin");
+};
 
   const navLink = (path) =>
     `font-medium ${pathname === path ? "text-[#15A1BF]" : "text-gray-900"}`;
@@ -43,8 +58,11 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/addDestinations" className={navLink("/addDestinations")}>
-            Add Destinations
+            <Link
+              href="/addDestinations"
+              className={navLink("/addDestinations")}
+            >
+              Add Destinations
             </Link>
           </li>
         </ul>
@@ -65,17 +83,43 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li>
-            <Link href="/signup" className={buttonLink("/signup")}>
-              Sign Up
-            </Link>
-          </li>
-
-          <li>
-            <Link href="/signin" className={buttonLink("/login")}>
-              Log In
-            </Link>
-          </li>
+          {user ? (
+            <>
+              <li>
+                <Avatar>
+                  <Avatar.Image alt={user?.name} src={user?.image} />
+                  <Avatar.Fallback>
+                    <Image
+                      src={avatar}
+                      width={20}
+                      height={20}
+                      alt="default avatar"
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </Avatar.Fallback>
+                </Avatar>
+              </li>
+              <li>
+                <Button
+                onClick={handleSignOut} 
+                variant="danger">Sign Out</Button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link href="/signup" className={buttonLink("/signup")}>
+                  Sign Up
+                </Link>
+              </li>
+              <li>
+                <Link href="/signin" className={buttonLink("/signin")}>
+                  {" "}
+                  Log In
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
 
         <button
@@ -107,29 +151,57 @@ const Navbar = () => {
                 My Booking
               </Link>
             </li>
-             <li>
-            <Link href="/addDestinations" className={navLink("/addDestinations")}>
-            Add Destinations
-            </Link>
-          </li>
+            <li>
+              <Link
+                href="/addDestinations"
+                className={navLink("/addDestinations")}
+              >
+                Add Destinations
+              </Link>
+            </li>
 
             <li>
               <Link href="/profile" className={navLink("/profile")}>
                 Profile
               </Link>
             </li>
-            <li className="flex flex-col gap-3 pt-2">
-              <Link
-                href="/signup"
-                className={`${buttonLink("/signup")} w-full text-white bg-[#15A1BF]`}
-              >
-                Sign Up
-              </Link>
-
-              <Link href="/signin" className={`${buttonLink("/login")} w-full  text-white bg-[#15A1BF]`}>
-                Log In
-              </Link>
-            </li>
+            {user ? (
+              <>
+                <li>
+                  <Avatar>
+                    <Avatar.Image alt={user?.name} src={user?.image} />
+                    <Avatar.Fallback>
+                      <Image
+                        src={avatar}
+                        width={20}
+                        height={20}
+                        alt="default avatar"
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    </Avatar.Fallback>
+                  </Avatar>
+                </li>
+                <li>
+                  <Button
+                 onClick={handleSignOut}  
+                variant="danger">Sign Out</Button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link href="/signup" className={buttonLink("/signup")}>
+                    Sign Up
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/signin" className={buttonLink("/signin")}>
+                    {" "}
+                    Log In
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       )}

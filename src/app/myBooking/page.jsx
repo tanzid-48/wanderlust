@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { Button, Card, Chip } from "@heroui/react";
 import { LuCalendar, LuMapPin, LuEye, } from "react-icons/lu";
 import Image from "next/image";
-import { TrashBin } from "@gravity-ui/icons";
+import BookingCancel from "@/components/BookingCancle";
 
 const BookingPage = async () => {
   const session = await auth.api.getSession({
@@ -64,7 +64,7 @@ const BookingPage = async () => {
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <LuMapPin size={16} />
-                    <span>Booking ID: {booking._id.slice(-2)}</span>
+                    <span>Booking ID: {booking._id}</span>
                   </div>
                 </div>
 
@@ -78,10 +78,7 @@ const BookingPage = async () => {
                 </div>
               </div>
               <div className="flex flex-row md:flex-col justify-end items-center gap-3">
-                <Button variant="danger">
-                  <TrashBin />
-                  Cancel
-                </Button>
+               <BookingCancel bookingId = {booking._id}></BookingCancel>
                 <Button
                   className="bg-cyan-500 text-white font-medium px-6 h-11 rounded"  
                 >

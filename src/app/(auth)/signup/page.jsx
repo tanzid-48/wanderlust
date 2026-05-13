@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Card,
@@ -10,13 +11,47 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
+import { redirect} from "next/navigation";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { toast } from "sonner";
 
 const SignUpPage = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(formData.entries());
+
+    if (user.password !== user.confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+
+    setLoading(true);
+
+    const { data, error } = await authClient.signUp.email({
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      image: user.photoURL || undefined,
+    });
+
+    setLoading(false);
+
+    if (error) {
+      toast.error(error.message || "Sign up failed. Please try again.");
+      return;
+    }
+
+    toast.success("Account created successfully! Please sign in.");
+    redirect("/signin");
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f8fafc] px-4 py-10">
@@ -31,16 +66,18 @@ const SignUpPage = () => {
           </p>
         </div>
 
-        <Form className="flex w-full flex-col gap-4">
+        <Form onSubmit={onSubmit} className="flex w-full flex-col gap-4">
           <TextField isRequired className="w-full" name="name">
             <Label>Full Name</Label>
             <Input type="text" placeholder="Enter Your Name" />
             <FieldError />
           </TextField>
+
           <TextField className="w-full" name="photoURL">
             <Label>Photo URL</Label>
             <Input type="url" placeholder="https://example.com/photo.jpg" />
           </TextField>
+
           <TextField
             isRequired
             name="email"
@@ -56,6 +93,7 @@ const SignUpPage = () => {
             <Input placeholder="john@example.com" />
             <FieldError />
           </TextField>
+
           <TextField
             isRequired
             minLength={8}
@@ -78,15 +116,9 @@ const SignUpPage = () => {
                 type="button"
                 onClick={() => setIsPasswordVisible((v) => !v)}
                 className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none z-10"
-                aria-label={
-                  isPasswordVisible ? "Hide password" : "Show password"
-                }
+                aria-label={isPasswordVisible ? "Hide password" : "Show password"}
               >
-                {isPasswordVisible ? (
-                  <FiEyeOff size={18} />
-                ) : (
-                  <FiEye size={18} />
-                )}
+                {isPasswordVisible ? <FiEyeOff size={18} /> : <FiEye size={18} />}
               </button>
             </div>
             <Description>
@@ -94,6 +126,7 @@ const SignUpPage = () => {
             </Description>
             <FieldError />
           </TextField>
+
           <TextField
             isRequired
             minLength={8}
@@ -116,25 +149,22 @@ const SignUpPage = () => {
                 type="button"
                 onClick={() => setIsConfirmVisible((v) => !v)}
                 className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none z-10"
-                aria-label={
-                  isConfirmVisible ? "Hide password" : "Show password"
-                }
+                aria-label={isConfirmVisible ? "Hide password" : "Show password"}
               >
-                {isConfirmVisible ? (
-                  <FiEyeOff size={18} />
-                ) : (
-                  <FiEye size={18} />
-                )}
+                {isConfirmVisible ? <FiEyeOff size={18} /> : <FiEye size={18} />}
               </button>
             </div>
             <FieldError />
           </TextField>
+
           <div className="pt-2 flex flex-col gap-4">
             <Button
               className="bg-cyan-500 hover:bg-cyan-600 text-white w-full font-bold h-11 shadow-lg shadow-cyan-100"
               type="submit"
+              isLoading={loading}
+              isDisabled={loading}
             >
-              Create Account
+              {loading ? "Creating Account..." : "Create Account"}
             </Button>
 
             <div className="flex items-center gap-3">
@@ -157,10 +187,7 @@ const SignUpPage = () => {
 
           <p className="text-center text-sm text-gray-600">
             Already have an account?{" "}
-            <Link
-              href="/signin"
-              className="text-cyan-500 font-bold hover:underline"
-            >
+            <Link href="/signin" className="text-cyan-500 font-bold hover:underline">
               Sign In
             </Link>
           </p>

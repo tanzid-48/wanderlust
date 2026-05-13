@@ -72,7 +72,7 @@ const Navbar = () => {
           </li>
 
           <li>
-            <Link href="/login" className={buttonLink("/login")}>
+            <Link href="/signin" className={buttonLink("/login")}>
               Log In
             </Link>
           </li>
@@ -126,7 +126,7 @@ const Navbar = () => {
                 Sign Up
               </Link>
 
-              <Link href="/login" className={`${buttonLink("/login")} w-full  text-white bg-[#15A1BF]`}>
+              <Link href="/signin" className={`${buttonLink("/login")} w-full  text-white bg-[#15A1BF]`}>
                 Log In
               </Link>
             </li>

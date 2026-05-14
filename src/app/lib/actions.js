@@ -57,3 +57,4 @@ export const deleteDestination = async (id) => {
   
   return { success: res.ok };
 };
+

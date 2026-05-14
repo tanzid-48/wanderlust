@@ -1,6 +1,6 @@
 
 export const getDestinationsData = async () => {
-  const res = await fetch("http://localhost:5000/destinations");
+  const res = await fetch("https://wanderlust-server-3.onrender.com/destinations");
   if (!res.ok) {
     throw new Error("Failed to fetch destinations");
   }
@@ -9,7 +9,7 @@ export const getDestinationsData = async () => {
 };
 
   export const getSingleDestination = async(_id) =>{
-    const res = await fetch(`http://localhost:5000/destinations/${_id}`)
+    const res = await fetch(`https://wanderlust-server-3.onrender.com/destinations/${_id}`)
      if (!res.ok) {
     throw new Error("Failed to fetch destination"); 
   }

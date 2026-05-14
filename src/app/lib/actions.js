@@ -8,7 +8,7 @@ export const creteDestination = async (formData) => {
 
   const newDestination = Object.fromEntries(formData.entries());
 
-  const res = await fetch("http://localhost:5000/destination", {
+  const res = await fetch("https://wanderlust-server-3.onrender.com/destinations", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export const updatedDestination = async (formData,_id) => {
 
   const destinationUpdated = Object.fromEntries(formData.entries());
 
-  const res = await fetch(`http://localhost:5000/destinations/${_id}`,{
+  const res = await fetch(`https://wanderlust-server-3.onrender.com/destinations/${_id}`,{
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export const updatedDestination = async (formData,_id) => {
 
 
 export const deleteDestination = async (id) => {
-  const res = await fetch(`http://localhost:5000/destinations/${id}`, {
+  const res = await fetch(`https://wanderlust-server-3.onrender.com/destinations/${id}`, {
     method: "DELETE",
   });
 

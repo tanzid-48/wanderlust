@@ -10,7 +10,7 @@ const BookingCancel = ({ bookingId }) => {
 
   const handleBookingCancel = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/booking/${bookingId}`, {
+      const res = await fetch(`https://wanderlust-server-3.onrender.com/booking/${bookingId}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",

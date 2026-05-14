@@ -12,7 +12,7 @@ const BookingPage = async () => {
   });
 
   const user = session?.user;
-  const res = await fetch(`http://localhost:5000/booking/${user?.id}`, {
+  const res = await fetch(`https://wanderlust-server-3.onrender.com/booking/${user?.id}`, {
     cache: "no-store",
   });
   const bookings = await res.json();

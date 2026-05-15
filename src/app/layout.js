@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
-import HeroSection from "@/components/HeroSection";
+
 
 const josefin = Josefin_Sans({
   
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
          <Toaster position="top-right" richColors />
         <Navbar></Navbar>
-        <HeroSection></HeroSection>
+        
         <main>{children}</main>
         <Footer></Footer>
       </body>

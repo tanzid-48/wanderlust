@@ -1,8 +1,9 @@
+import React from 'react';
 import { Separator } from "@heroui/react";
-
-const Banner = () => {
-  return (
-     <div
+const HeroSection = () => {
+    return (
+        <div>
+               <div
       style={{ backgroundImage: "url('/assets/banner.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       className="text-white flex justify-between flex-col items-center gap-5 h-150"
     >
@@ -61,8 +62,8 @@ const Banner = () => {
         </div>
       </div>
     </div>
-  );
+        </div>
+    );
 };
 
-export default Banner;
-
+export default HeroSection;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDestinationsData } from '../lib/data';
+import { getDestinationsData } from '../../lib/data';
 import DestinationCard from '@/components/DestinationCard';
 
 const DestinationsPage = async() => {

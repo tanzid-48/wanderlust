@@ -1,6 +1,6 @@
 import AddDestinationForm from "@/components/AddDestinationForm";
 import { Card } from "@heroui/react";
-import { creteDestination } from "../lib/actions";
+import { creteDestination } from "../../lib/actions";
 
 const AddDestinationsPage = () => {
   return (

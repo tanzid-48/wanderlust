@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteDestination } from "@/app/lib/actions";
+import { deleteDestination } from "@/lib/actions";
 import { AlertDialog, Button } from "@heroui/react";
 import { Trash2 } from "lucide-react";
 

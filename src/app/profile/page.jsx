@@ -2,7 +2,7 @@ import React from "react";
 import { headers } from "next/headers";
 import { Button, Card, Avatar } from "@heroui/react";
 
-import { auth } from "../lib/auth";
+import { auth } from "../../lib/auth";
 
 import {
   LucideEdit,

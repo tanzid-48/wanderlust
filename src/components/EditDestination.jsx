@@ -1,6 +1,6 @@
 'use client'
 
-import { updatedDestination } from "@/app/lib/actions";
+import { updatedDestination } from "@/lib/actions";
 import { Envelope } from "@gravity-ui/icons";
 import {
   Button,

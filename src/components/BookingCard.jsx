@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/app/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { Button, DateField, Label } from "@heroui/react";
 import { ArrowRight } from "lucide-react";
 import React, { useState } from "react";

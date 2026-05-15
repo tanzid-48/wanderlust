@@ -1,5 +1,5 @@
 import React from "react";
-import { auth } from "../lib/auth";
+import { auth } from "../../lib/auth";
 import { headers } from "next/headers";
 import { Button, Card, Chip } from "@heroui/react";
 import { LuCalendar, LuMapPin, LuEye, } from "react-icons/lu";

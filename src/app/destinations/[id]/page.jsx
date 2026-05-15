@@ -1,4 +1,4 @@
-import { getSingleDestination } from "@/app/lib/data";
+import { getSingleDestination } from "@/lib/data";
 import React from "react";
 import Link from "next/link";
 

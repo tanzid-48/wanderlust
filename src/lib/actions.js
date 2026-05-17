@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { auth } from "./auth";
+import { auth } from "@/lib/auth";
 
 export const creteDestination = async (formData) => {
   

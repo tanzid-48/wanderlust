@@ -22,6 +22,10 @@ export const creteDestination = async (formData) => {
 };
 
 export const updatedDestination = async (formData,_id) => {
+
+  const { token } = await auth.api.getToken({
+    headers: await headers()
+  });
  
 
   const destinationUpdated = Object.fromEntries(formData.entries());
@@ -30,6 +34,7 @@ export const updatedDestination = async (formData,_id) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+     authorization: `Bearer ${token}`,  
     },
     body: JSON.stringify(destinationUpdated),
   });

@@ -11,9 +11,16 @@ const BookingPage = async () => {
     headers: await headers(),
   });
 
+   const {token} =  await auth.api.getToken({
+      headers: await headers()
+    });
+
   const user = session?.user;
   const res = await fetch(`https://wanderlust-server-3.onrender.com/booking/${user?.id}`, {
     cache: "no-store",
+    headers:{
+      authorization:`Bearer ${token}`
+    }
   });
   const bookings = await res.json();
 

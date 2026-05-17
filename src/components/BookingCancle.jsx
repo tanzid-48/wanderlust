@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { TrashBin } from "@gravity-ui/icons";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
@@ -10,10 +11,12 @@ const BookingCancel = ({ bookingId }) => {
 
   const handleBookingCancel = async () => {
     try {
+      const {data:tokenData} = await authClient.token()
       const res = await fetch(`https://wanderlust-server-3.onrender.com/booking/${bookingId}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
+           authorization: `Bearer ${tokenData?.token}`,
         },
       });
 

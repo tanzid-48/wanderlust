@@ -1,4 +1,4 @@
-import { getFeaturedDestinations } from "@/lib/api";
+import React from "react";
 import DestinationCard from "@/components/DestinationCard";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";

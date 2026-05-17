@@ -15,6 +15,12 @@ const BookingCard = ({ destination }) => {
   const [departure, setDeparture] = useState(null);
 
   const handleBooking = async () => {
+    
+    if (!departure) {
+      toast.error("Please select a departure date");
+      return;
+    }
+
     const bookingData = {
       userId: user?.id,
       userImage: user?.image,
@@ -29,17 +35,19 @@ const BookingCard = ({ destination }) => {
       departureDate: departure?.toDate("Asia/Dhaka"),
     };
 
+    const {data:tokenDaAta} = await authClient.token()
+
     const res = await fetch("https://wanderlust-server-3.onrender.com/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(bookingData),
     });
     const data = await res.json();
       toast.success(`${destinationName} Booking Successfully`)
-     return data;
-     
+     return data; 
     
   };
 

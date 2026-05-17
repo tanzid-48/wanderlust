@@ -14,11 +14,22 @@ import Image from "next/image";
 import EditDestination from "@/components/EditDestination";
 import { DeleteDestination } from "@/components/DeleteDestination";
 import BookingCard from "@/components/BookingCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 
 const DetailsDestinationPage = async ({ params }) => {
   const { id } = await params;
-  const destination = await getSingleDestination(id);
+  const {token} =  await auth.api.getToken({
+    headers: await headers()
+  });
+
+  if (!token) {
+  redirect("/login");
+}
+  const destination = await getSingleDestination(id,token);
+
   const {
     _id,
     destinationName,

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const CTA = () => {
   return (
-    <section className="relative h-65 flex items-center justify-center text-center overflow-hidden">
+    <section className="relative h-75 flex items-center justify-center text-center overflow-hidden">
       <Image
         src="/assets/CTA.png"
         alt="CTA Background"

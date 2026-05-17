@@ -35,7 +35,7 @@ const BookingCard = ({ destination }) => {
       departureDate: departure?.toDate("Asia/Dhaka"),
     };
 
-    const {data:tokenDaAta} = await authClient.token()
+    const {data:tokenData} = await authClient.token()
 
     const res = await fetch("https://wanderlust-server-3.onrender.com/booking", {
       method: "POST",
